@@ -6,8 +6,9 @@ var Sunset = function () {
 	var height = window.innerHeight;
 
 	var camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
-	camera.translateZ(200);
-	camera.translateY(100);
+	camera.translateZ(10);
+	camera.translateY(5);
+	camera.translateX(10);
 	camera.lookAt(new THREE.Vector3());
 
 	var scene = new THREE.Scene();
