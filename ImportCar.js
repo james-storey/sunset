@@ -5,7 +5,7 @@ var importCar = function(){
  	var material = new THREE.MeshLambertMaterial( {color: 0xabcdef} );
  	var carMesh = new THREE.Mesh(geometry, material);
 
- 	scene.add(carMesh);
+ 	Sunset.scene.add(carMesh);
  });
 
 };
