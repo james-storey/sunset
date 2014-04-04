@@ -34,9 +34,12 @@ var Sunset = function () {
 		dL.position = new THREE.Vector3( 1, 1.5, 1 );
 		scene.add(dL);
 
-		//var planeGeo = new THREE.CubeGeometry(100, 100, 300, 10, 10, 10);
-		//var mat = new THREE.MeshLambertMaterial({color: 0xffffff});
-		//scene.add(new THREE.Mesh(planeGeo, mat));
+		var cubeGeo = new THREE.CubeGeometry(5, 5, 5, 10, 10, 10);
+		var mat = new THREE.MeshLambertMaterial({color: 0xffffff});
+		var c = new THREE.Mesh(cubeGeo, mat);
+		c.translateX(-20);
+		c.translateY(2.5);
+		scene.add(c);
 		importCar();
 		scene.add(camera);
 	};
