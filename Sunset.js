@@ -4,6 +4,7 @@ var Sunset = function () {
 	var that = {};
 	var width = window.innerWidth;
 	var height = window.innerHeight;
+	var car = Car();
 
 	var camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
 	camera.translateZ(10);
@@ -42,12 +43,15 @@ var Sunset = function () {
 		c.translateX(-20);
 		c.translateY(2.5);
 		scene.add(c);
-		importCar();
+
+		car.importCar(scene);
 		scene.add(camera);
+
 
 	};
 
 	var update = function () {
+		car.driveWheels();
 		requestAnimationFrame (update);
 		time += 0.01;
 		dL.position = new THREE.Vector3( Math.cos(time), 1.5, Math.sin(time) );
