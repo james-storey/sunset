@@ -33,12 +33,15 @@ var Car = function(){
 
 	};
 
-	var driveWheels = function(){
+	var driveWheels = function(time){
 		if(that.loaded === true){
-			console.log("drive");
+			//console.log("drive");
 			for (i = 0; i < tireMeshes.length; i++){
 				tireMeshes[i].rotateX(.5);
 			}
+			carMesh.rotateZ(Math.cos(time * (2* Math.PI) * 2.25 ) * 0.015);
+			carMesh.position = new THREE.Vector3( carMesh.position.x, Math.cos(time * (2* Math.PI) * 2.25) * 0.3, carMesh.position.z );
+
 		}
 
 	}

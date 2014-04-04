@@ -35,6 +35,7 @@ var Sunset = function () {
 	var mat = new THREE.MeshLambertMaterial({color: 0xffffff});
 	var c;
 	var time = 0;
+	var timer = 0;
 
 	var init = function () {
 		dL.position = new THREE.Vector3( 1, 0.5, 1 );
@@ -57,13 +58,19 @@ var Sunset = function () {
 	};
 
 	var update = function () {
-		car.driveWheels();
 		requestAnimationFrame (update);
-		time += 0.01;
-		dL.position = new THREE.Vector3( Math.cos(time), 1.5, Math.sin(time) );
-		c.position = new THREE.Vector3( c.position.x, c.position.y, (time % 5) * -200);
-		camera.position = new THREE.Vector3( camera.position.x, camera.position.y, 
-										 	 Math.cos(time) * 10 );
+		var now = new Date().getTime();
+		var dt = now - (time || now);
+		time = now;
+		timer += dt;
+
+		var sec = timer / 1000;
+		car.driveWheels(sec);
+		
+		dL.position = new THREE.Vector3( Math.cos(sec), 1.5, Math.sin(sec) );
+		c.position = new THREE.Vector3( c.position.x, c.position.y, (sec*0.7 % 5) * -200);
+		//camera.position = new THREE.Vector3( camera.position.x, camera.position.y, 
+		//								 	 Math.cos(time) * 10 );
 		camera.lookAt(new THREE.Vector3())
 		renderer.render(scene, camera);
 	};
