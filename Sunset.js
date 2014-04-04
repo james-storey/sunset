@@ -38,9 +38,10 @@ var Sunset = function () {
 	var init = function () {
 		dL.position = new THREE.Vector3( 1, 0.5, 1 );
 		scene.add(dL);
+		scene.add(new THREE.AmbientLight( 0x060d0f ));
 
 		c = new THREE.Object3D();
-		for (var i = 0; i < 100; i += 1) {
+		for (var i = 0; i < 150; i += 1) {
 			c.add(new THREE.Mesh(cubeGeo, mat).translateZ((i * 20) - 1000));
 		}
 		
@@ -57,6 +58,9 @@ var Sunset = function () {
 		time += 0.01;
 		dL.position = new THREE.Vector3( Math.cos(time), 1.5, Math.sin(time) );
 		c.position = new THREE.Vector3( c.position.x, c.position.y, (time % 5) * -200);
+		camera.position = new THREE.Vector3( camera.position.x, camera.position.y, 
+										 	 Math.cos(time) * 10 );
+		camera.lookAt(new THREE.Vector3())
 		renderer.render(scene, camera);
 	};
 	
