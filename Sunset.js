@@ -29,9 +29,11 @@ var Sunset = function () {
 		renderer.setSize(width, height);
 	}
 
+	var dL = new THREE.DirectionalLight({color: 0xffffff});
+	var time = 0;
+
 	var init = function () {
-		var dL = new THREE.DirectionalLight({color: 0xffffff});
-		dL.position = new THREE.Vector3( 1, 1.5, 1 );
+		dL.position = new THREE.Vector3( 1, 0.5, 1 );
 		scene.add(dL);
 
 		var cubeGeo = new THREE.CubeGeometry(5, 5, 5, 10, 10, 10);
@@ -42,10 +44,13 @@ var Sunset = function () {
 		scene.add(c);
 		importCar();
 		scene.add(camera);
+
 	};
 
 	var update = function () {
 		requestAnimationFrame (update);
+		time += 0.01;
+		dL.position = new THREE.Vector3( Math.cos(time), 1.5, Math.sin(time) );
 
 		renderer.render(scene, camera);
 	};
