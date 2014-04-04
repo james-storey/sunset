@@ -1,11 +1,27 @@
-var importCar = function(){
+var Car = function(){
 
- var loader = new THREE.JSONLoader();
- loader.load("./resources/Yugo_45a.js", function(geometry){
- 	var material = new THREE.MeshLambertMaterial( {color: 0xabcdef} );
- 	var carMesh = new THREE.Mesh(geometry, material);
+	var that = {};
 
- 	Sunset.scene.add(carMesh);
- });
+	var importCar = function(){
+	 var loader = new THREE.JSONLoader();
+	 var carMesh;
+	 loader.load("./resources/Yugo_45a.js", function(geometry){
+	 	var material = new THREE.MeshLambertMaterial( {color: 0xabcdef} );
+	 	carMesh = new THREE.Mesh(geometry, material);
+	 });
+	};
 
-};
+	var driveWheels = function(){
+		for(i = 0; i < carMesh.geometry.children.length; i++){
+			console.log(carMesh.geometry.children[i].name);
+		}
+
+	}
+
+	that.carMesh = carMesh;
+
+	importCar();
+
+	return that;
+
+}();
